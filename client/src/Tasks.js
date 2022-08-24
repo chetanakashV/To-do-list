@@ -59,7 +59,7 @@ const Tasks = () => {
     
     return (
         <div>
-          {/* {(mail == mailid) ? navigate('/'): null } */}
+          {!mail && navigate('/')}
           <button style = {{background: "none", border: "none" ,position: "relative", left: "47%"}} onClick = {toggleHandler}>Add Task <HiIcons.HiOutlinePlusCircle/></button><button onClick={Logout} className='logout' >Logout
           <RiIcons.RiLogoutBoxRLine/></button>
           <br/>
