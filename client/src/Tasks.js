@@ -14,6 +14,7 @@ const Tasks = () => {
     const navigate = useNavigate();
      curr.setDate(curr.getDate() + 1);
      var date = curr.toISOString().substring(0,10);
+     const [filter,setFilter] = useState('all');
      const [addTask, setAddTask] = useState(false);
     const [type, setType] = useState('personal');
     const [taskName, setTaskName] = useState("");
@@ -29,6 +30,10 @@ const Tasks = () => {
 
     const toggleHandler = () => {
       setAddTask(!addTask);
+    }
+
+    const FilterHandler = () => {
+        setFilter(!filter);
     }
 
     const Logout = () => {
@@ -60,9 +65,29 @@ const Tasks = () => {
     return (
         <div>
           {!mail && navigate('/')}
+          <button style={{border: "none", background: "none", position: "relative", left: "5%"}} onClick={FilterHandler}>Filter<HiIcons.HiFilter/></button>
+
+          <div style = {{position: "relative", left: "5%"}}> {filter &&
+           <div>
+            <input type="radio" id="personal" name="filter" checked  = {filter == 'personal'} onChange = {e => setFilter('personal')} />
+            <label for="personal"  >personal</label> {" "}
+
+            <input type="radio" onChange={e => setFilter('work')} id="work" name="filter" checked  = {filter == 'work'} />
+            <label for="work">work</label>{" "}
+
+            <input type="radio" onChange={e => setFilter('others')} id="work" name="filter" checked  = {filter == 'others'} />
+            <label for="others">others</label>{" "}
+
+            <input type="radio" id="all" name="filter" onChange={e => setFilter('all')} checked  = {filter == 'all'} />
+            <label for="all" >all</label>{" "}
+
+            <br/><br/>
+           </div>
+           }</div>
           <button style = {{background: "none", border: "none" ,position: "relative", left: "47%"}} onClick = {toggleHandler}>Add Task <HiIcons.HiOutlinePlusCircle/></button><button onClick={Logout} className='logout' >Logout
           <RiIcons.RiLogoutBoxRLine/></button>
           <br/>
+
         {addTask && <form  style ={{justifyContent: "center", textAlign: "center"}} onSubmit ={submitHandler}  >
            <p>Please select type of task:</p>
             <input type="radio" id="personal" name="type" checked  = {type == 'personal'} onChange = {e => setType('personal')} />
@@ -108,7 +133,7 @@ const Tasks = () => {
 
                 {task.status &&<button onClick={() => MarkUndone(task._id)} style ={{background: "none", border: "none", justifyContent:"center"}}><ImIcons.ImCheckboxChecked/></button>}
                  </td>
-
+                
                 <td>{task.taskType} </td> 
                 <td>{!task.status ? task.taskName : <strike>{task.taskName}</strike>}</td>
                 <td>{task.description}</td>
