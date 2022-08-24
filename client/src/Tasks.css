@@ -1,0 +1,17 @@
+
+.inp {
+    background-color: none;
+    width: 250px;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.taskname{
+    color:red
+}
+.logout{
+    background: none;
+    border: none;
+    position: relative;
+    left:80%;
+}
