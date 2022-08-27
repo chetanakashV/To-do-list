@@ -46,7 +46,7 @@ app.post('/tasks', async (req,res) => {
 //to get the data from the database
 app.get('/read/:email', async (req,res) => {
     const email = req.params.email;
-    taskModel.find({email:email}, (error, result) => {
+    taskModel.find({email:email}, (error, result) => { 
         if(error){
             console.log(error);
         }

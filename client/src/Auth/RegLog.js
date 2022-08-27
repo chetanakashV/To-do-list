@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './RegLog.css'
-import { useNavigate } from 'react-router';
+import { renderMatches, useNavigate } from 'react-router';
 import Axios from 'axios'
-
+ 
 function Login(props) {
     const navigate = useNavigate();
     const[page,setPage] = useState(true);
@@ -51,14 +51,15 @@ function Login(props) {
 
     return (
         <div>
-            {/* Login Page */}
+            {/* Login Page */}<br/><br/><br/><br/><br/>
            {page && <div style = {{textAlign:"center"}}>
+            <h3 > <b>LOGIN FORM </b></h3>
            <div >
-            <label >Email:</label><br/>
-            <input type = "email" required value = {Lemail} onChange = {e => setLEmail(e.target.value)}/><br/>
-            <label >Password:</label><br/>
-            <input type = "password" required  value = {Lpassword} onChange = {e => setLPassword(e.target.value)}/><br/><br/>
-            <button  onClick={Login}> Login </button>
+            {/* <label >Email</label><br/> */}<br/>
+            <input type = "email" required className='inp' placeholder='Email' value = {Lemail} onChange = {e => setLEmail(e.target.value)}/><br/>
+            {/* <label >Password</label><br/> */}<br/>
+            <input type = "password" required className='inp' placeholder='Password' value = {Lpassword} onChange = {e => setLPassword(e.target.value)}/><br/><br/>
+            <button  onClick={Login} className="inp log " > Login </button>
             
            </div>
            <br/>
@@ -68,17 +69,18 @@ function Login(props) {
 
           {/* RegisterPage */}
            {!page && <div style = {{textAlign:"center"}}>
-           <form >
-            <label>Name: </label><br/>
-            <input type = 'text' value = {Rname} onChange = {e => setRName(e.target.value)} required/><br/>
-            <label>Email: </label><br/>
-            <input type = 'email' value = {Remail} onChange = {e => setREmail(e.target.value)} required/><br/>
-            <label>Password: </label><br/>
-            <input type = 'password' value = {Rpassword} onChange = {e => setRPassword(e.target.value)} required/><br/><br/>
-            <button  onClick={Register}>Register</button><br/>
+           <form  ><br/>
+            <h3> <b>REGISTER FORM </b></h3>
+            {/* <label>Name </label><br/> */}<br/>
+            <input type = 'text' value = {Rname} placeholder = 'Name 'className ='inp' onChange = {e => setRName(e.target.value)} required/><br/>
+            {/* <label>Email </label><br/> */}<br/>
+            <input type = 'email' value = {Remail} placeholder ='Email' className ='inp' onChange = {e => setREmail(e.target.value)} required/><br/>
+            {/* <label>Password </label><br/> */}<br/> 
+            <input type = 'password' value = {Rpassword} placeholder ='Password' className ='inp' onChange = {e => setRPassword(e.target.value)} required/><br/><br/>
+            <button  onClick={Register} className ='inp reg' >Register</button><br/><br/>
            </form><br/><br/>
 
-           <button className='togglers' onClick={pageToggler}>Already Registered? Click Here to Login Now!!</button>
+           <button className='togglers' onClick={pageToggler} style ={{color: "green"}}>Already Registered? Click Here to Login Now!!</button>
            </div>}
             
         </div>
